@@ -8,54 +8,57 @@
           ga('send', 'pageview');
     </script><script src="//cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.js"></script><script type="text/javascript">
     $(document).ready(function() {
-      var total_cnt = 11225577
-      var gb_fx = 3059000000000;
-      var cn_fx = 7573800000000;
-      var cn_fc = 7709600000000;
-      var cn_sc = 51396132360;
+      $.get("getVol", function(data) {
 
-      var ct = total_cnt - total_cnt*0.01;
-      var cgfx = gb_fx - gb_fx*0.01;
-      var ccfx = cn_fx - cn_fx*0.01;
-      var ccfc = cn_fc - cn_fc*0.01;
-      var ccsc = cn_sc - cn_sc*0.01;
 
-      setInterval(function() {
-        if (ct < total_cnt) {
-          ct = parseInt($("#total_cnt").text()) + total_cnt*0.004
-          $("#total_cnt").text(Math.ceil(ct))
-        }
+        var total_cnt = data.total
+        var gb_fx = data.global_fx;
+        var cn_fx = data.china_fx;
+        var cn_fc = data.china_fc;
+        var cn_sc = data.china_sc;
 
-        if (cgfx < gb_fx) {
-          cgfx = parseInt($("#gb_fx").text()) + gb_fx*0.01
-          $("#gb_fx").text(Math.ceil(cgfx))
-        }
+        var ct = total_cnt - total_cnt*0.01;
+        var cgfx = gb_fx - gb_fx*0.01;
+        var ccfx = cn_fx - cn_fx*0.01;
+        var ccfc = cn_fc - cn_fc*0.01;
+        var ccsc = cn_sc - cn_sc*0.01;
+        setInterval(function() {
+          if (ct < total_cnt) {
+            ct = parseInt($("#total_cnt").text()) + total_cnt*0.004
+            $("#total_cnt").text(Math.ceil(ct))
+          }
 
-        if (ccfx < cn_fx) {
-          ccfx = parseInt($("#cn_fx").text()) + cn_fx*0.005
-          $("#cn_fx").text(Math.ceil(ccfx))
-        }
+          if (cgfx < gb_fx) {
+            cgfx = parseInt($("#gb_fx").text()) + gb_fx*0.01
+            $("#gb_fx").text(Math.ceil(cgfx))
+          }
 
-        if (ccfc < cn_fc) {
-          ccfc = parseInt($("#cn_fc").text()) + cn_fc*0.007
-          $("#cn_fc").text(Math.ceil(ccfc))
-        }
+          if (ccfx < cn_fx) {
+            ccfx = parseInt($("#cn_fx").text()) + cn_fx*0.005
+            $("#cn_fx").text(Math.ceil(ccfx))
+          }
 
-        if (ccsc < cn_sc) {
-          ccsc = parseInt($("#cn_sc").text()) + cn_sc*0.008
-          $("#cn_sc").text(Math.ceil(ccsc))
-        }
-      },10)
-      var ele = ["total_cnt", "gb_fx","cn_fc","cn_fx","cn_sc"]
-      setInterval(function() {
-          var i = Math.ceil(Math.random()*10)%5
-          var randomEle =$("#" + ele[i])
-          console.info(randomEle)
-          var ranNum = parseInt(randomEle.text()) + Math.random()*(i == 0? 10 : 1000)
-          randomEle.text(Math.ceil(ranNum));
-        
+          if (ccfc < cn_fc) {
+            ccfc = parseInt($("#cn_fc").text()) + cn_fc*0.007
+            $("#cn_fc").text(Math.ceil(ccfc))
+          }
 
-      }, 3000)
+          if (ccsc < cn_sc) {
+            ccsc = parseInt($("#cn_sc").text()) + cn_sc*0.008
+            $("#cn_sc").text(Math.ceil(ccsc))
+          }
+        },10)
+        var ele = ["total_cnt", "gb_fx","cn_fc","cn_fx","cn_sc"]
+        setInterval(function() {
+            var i = Math.ceil(Math.random()*10)%5
+            var randomEle =$("#" + ele[i])
+            console.info(randomEle)
+            var ranNum = parseInt(randomEle.text()) + Math.random()*(i == 0? 10 : 1000)
+            randomEle.text(Math.ceil(ranNum));
+          
+
+        }, 3000)
+      })
       
     })
     </script></body></html>
